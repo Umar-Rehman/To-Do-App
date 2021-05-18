@@ -1,0 +1,42 @@
+body {
+    background: hsl(7, 51%, 71%);
+}
+.caption {
+    text-align: center;
+    /* margin-top: 3%;
+    margin-bottom: 3%; */
+}
+
+
+/* sets both h3's to the same height */
+
+.h3Spacing {
+    height: 40px;
+    
+}
+
+.outerTask {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    background-color: hsl(7, 58%, 62%);
+    border-radius: .5rem;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 1.2rem;
+    width: auto;
+    min-width: none;
+
+}
+
+.tasklist {
+    border-radius: .5rem;
+
+}
+
+.cardSpace {
+    margin-right: 1em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    border: .6rem solid;
+}

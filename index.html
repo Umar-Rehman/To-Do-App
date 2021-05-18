@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta
+        name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <!-- My CSS -->
+        <link rel="stylesheet" href="style.css">
+
+        <title>My To-Do App</title>
+    </head>
+    <body>
+        <h1 class="caption">My To-Do Website!</h1>
+        <div class="container-fluid row justify-content-center">
+            <div class="col-md-4">
+                <form name="myForm">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Name of the person creating the task">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <input type="text" name="description" class="form-control" id="description" placeholder="E.g. Finish coding your To-Do app!">
+                    </div>
+                    <div class="form-group">
+                        <label for="assignedTo">Assigned To:</label>
+                        <input type="text" name="assignedto" class="form-control" id="assignedto" placeholder="Name of the person this task is assigned to">
+                    </div>
+                    <div class="form-group">
+                        <label for="dueDate">Due Date:</label>
+                        <input type="date" class="form-control" id="dueDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" name="status" id="status">
+                            <option value="" disabled selected hidden>Choose...</option>
+                            <option value="To-Do">TODO</option>
+                            <option value="In Progress">IN PROGRESS</option>
+                            <option value="Review">REVIEW</option>
+                            <option value="Complete">DONE</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="addTask">Add Task</button>
+                </form>
+            </div>
+        </div>
+          <div class="container-fluid justify-content-center list-group" style="border: black 2px solid;" id="taskOutput">
+            <!-- Tasks will go here! -->
+          </div>
+        <div
+            class="container-fluid row justify-content-center outerTask">
+            <div class="row">
+              <div class="col-4">
+                <h3 class="caption">To-Do:</h3>
+              </div>
+              <div class="col-8">
+                <h3 class="caption">Details:</h3>
+              </div>
+            </div>
+            <div class="col-4 tasklist">
+                <div class="h3Spacing">
+                    <!-- <h3 class="caption">To-Do:</h3> -->
+                </div>
+                <div class="row">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1"><strong>Assigned to: </strong>Alpha</h5>
+                                <small><strong>Due: </strong>19/05/2021</small>
+                            </div>
+                            <small><strong>Status: </strong>In progress</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1"><strong>Assigned to: </strong>Bravo</h5>
+                                <small><strong>Due: </strong>23/05/2021</small>
+                            </div>
+                            <small><strong>Status: </strong>In progress</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1"><strong>Assigned to: </strong>Charlie</h5>
+                                <small><strong>Due: </strong>27/05/2021</small>
+                            </div>
+                            <small><strong>Status: </strong>To-do</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1"><strong>Assigned to: </strong>Delta</h5>
+                                <small><strong>Due: </strong>30/05/2021</small>
+                            </div>
+                            <small><strong>Status: </strong>Review</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1"><strong>Assigned to: </strong>Echo</h5>
+                                <small><strong>Due: </strong>07/06/2021</small>
+                            </div>
+                            <small><strong>Status: </strong>To-do</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1"><strong>Assigned to: </strong>Foxtrot</h5>
+                                <small><strong>Due: </strong>16/06/2021</small>
+                            </div>
+                            <small><strong>Status: </strong>Review</small>
+                        </a>
+                    </div>
+                    <!-- <div class="list-group" id="list-tab" role="tablist">
+                                                                  <a class="list-group-item list-group-item-action list-group-item-danger" id="list-home-list" data-bs-toggle="list" href="#list-1" role="tab" aria-controls="list-home">Task 1</a>
+                                                                  <a class="list-group-item list-group-item-action list-group-item-warning" id="list-profile-list" data-bs-toggle="list" href="#list-2" role="tab" aria-controls="list-profile">Task 2</a>
+                                                                  <a class="list-group-item list-group-item-action list-group-item-success" id="list-messages-list" data-bs-toggle="list" href="#list-3" role="tab" aria-controls="list-messages">Task 3</a>
+                                                                  <a class="list-group-item list-group-item-action list-group-item-info" id="list-settings-list" data-bs-toggle="list" href="#list-4" role="tab" aria-controls="list-settings">Task 4</a>
+                                                                  <a class="list-group-item list-group-item-action list-group-item-dark" id="list-settings-list" data-bs-toggle="list" href="#list-5" role="tab" aria-controls="list-settings">Task 5</a>
+                                                                  <a class="list-group-item list-group-item-action list-group-item-dark" id="list-settings-list" data-bs-toggle="list" href="#list-5" role="tab" aria-controls="list-settings">Task 6</a>
+                                                                </div> -->
+                </div>
+            </div>
+
+            <div class="col-8 tasklist">
+                <div class="h3Spacing">
+                    <!-- <h3 class="caption">Details:</h3> -->
+                </div>
+                <div class="row">
+                    <div class="card cardSpace" style="width: 18rem; border-color: #dc3545;">
+                        <div class="card-header">
+                            <h5>
+                                <strong>Assigned To:
+                                </strong>Alpha</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Assigned By:
+                                </strong>Frodo</li>
+                            <li class="list-group-item">
+                                <strong>Due:
+                                </strong>19/05/2021</li>
+                            <li class="list-group-item">
+                                <strong>To-Do:
+                                </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, repellat neque! Numquam, fugiat velit nostrum, blanditiis quae ex est recusandae fuga nemo aspernatur deserunt quasi saepe eos quo culpa. Qui?</li>
+                            <li class="list-group-item">
+                                <strong>Status:
+                                </strong>In progress</li>
+                        </ul>
+                    </div>
+
+                    <div class="card cardSpace" style="width: 18rem; border-color: #ffc107;">
+                        <div class="card-header">
+                            <h5>
+                                <strong>Assigned To:
+                                </strong>Bravo</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Assigned By:
+                                </strong>Frodo</li>
+                            <li class="list-group-item">
+                                <strong>Due:
+                                </strong>23/05/2021</li>
+                            <li class="list-group-item">
+                                <strong>To-Do:
+                                </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, repellat neque! Numquam, fugiat velit nostrum, blanditiis quae ex est recusandae fuga nemo aspernatur deserunt quasi saepe eos quo culpa. Qui?</li>
+                            <li class="list-group-item">
+                                <strong>Status:
+                                </strong>In progress</li>
+                        </ul>
+                    </div>
+
+                    <div class="card cardSpace" style="width: 18rem; border-color: #198754;">
+                        <div class="card-header">
+                            <h5>
+                                <strong>Assigned To:
+                                </strong>Charlie</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Assigned By:
+                                </strong>Frodo</li>
+                            <li class="list-group-item">
+                                <strong>Due:
+                                </strong>27/05/2021</li>
+                            <li class="list-group-item">
+                                <strong>To-Do:
+                                </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, repellat neque! Numquam, fugiat velit nostrum, blanditiis quae ex est recusandae fuga nemo aspernatur deserunt quasi saepe eos quo culpa. Qui?</li>
+                            <li class="list-group-item">
+                                <strong>Status:
+                                </strong>To do</li>
+                        </ul>
+                    </div>
+
+                    <div class="card cardSpace" style="width: 18rem; border-color: #0dcaf0;">
+                        <div class="card-header">
+                            <h5>
+                                <strong>Assigned To:
+                                </strong>Delta</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Assigned By:
+                                </strong>Frodo</li>
+                            <li class="list-group-item">
+                                <strong>Due:
+                                </strong>30/05/2021</li>
+                            <li class="list-group-item">
+                                <strong>To-Do:
+                                </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, repellat neque! Numquam, fugiat velit nostrum, blanditiis quae ex est recusandae fuga nemo aspernatur deserunt quasi saepe eos quo culpa. Qui?</li>
+                            <li class="list-group-item">
+                                <strong>Status:
+                                </strong>Review</li>
+                        </ul>
+                    </div>
+
+                    <div class="card cardSpace" style="width: 18rem; border-color: #212529;">
+                        <div class="card-header">
+                            <h5>
+                                <strong>Assigned To:
+                                </strong>Echo</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Assigned By:
+                                </strong>Frodo</li>
+                            <li class="list-group-item">
+                                <strong>Due:
+                                </strong>7/06/2021</li>
+                            <li class="list-group-item">
+                                <strong>To-Do:
+                                </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, repellat neque! Numquam, fugiat velit nostrum, blanditiis quae ex est recusandae fuga nemo aspernatur deserunt quasi saepe eos quo culpa. Qui?</li>
+                            <li class="list-group-item">
+                                <strong>Status:
+                                </strong>To do</li>
+                        </ul>
+                    </div>
+
+                    <div class="card cardSpace" style="width: 18rem; border-color: #212529;">
+                        <div class="card-header">
+                            <h5>
+                                <strong>Assigned To:
+                                </strong>Foxtrot</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Assigned By:
+                                </strong>Frodo</li>
+                            <li class="list-group-item">
+                                <strong>Due:
+                                </strong>16/06/2021</li>
+                            <li class="list-group-item">
+                                <strong>To-Do:
+                                </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, repellat neque! Numquam, fugiat velit nostrum, blanditiis quae ex est recusandae fuga nemo aspernatur deserunt quasi saepe eos quo culpa. Qui?</li>
+                            <li class="list-group-item">
+                                <strong>Status:
+                                </strong>Review</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- <div class="col-6 tasklist">
+                                                      <h3>Details:</h3>
+                                                      <div class="tab-content" id="nav-tabContent">
+                                                        <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-home-list">
+                                                          
+                                                          <div class="card" style="width: 18rem;">
+                                                            <div class="card-header">
+                                                              Task 1
+                                                            </div>
+                                                            <ul class="list-group list-group-flush">
+                                                              <li class="list-group-item">An item</li>
+                                                              <li class="list-group-item">A second item</li>
+                                                              <li class="list-group-item">A third item</li>
+                                                            </ul>
+                                                          </div>
+                                                          </div>
+                                                        <div class="tab-pane fade" id="list-2" role="tabpanel" aria-labelledby="list-profile-list">
+                                                          
+                                                          <div class="card" style="width: 18rem;">
+                                                            <div class="card-header">
+                                                              Task 2
+                                                            </div>
+                                                            <ul class="list-group list-group-flush">
+                                                              <li class="list-group-item">An item</li>
+                                                              <li class="list-group-item">A second item</li>
+                                                              <li class="list-group-item">A third item</li>
+                                                            </ul>
+                                                          </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="list-3" role="tabpanel" aria-labelledby="list-messages-list">
+                                                          
+                                                          <div class="card" style="width: 18rem;">
+                                                            <div class="card-header">
+                                                              Task 3
+                                                            </div>
+                                                            <ul class="list-group list-group-flush">
+                                                              <li class="list-group-item">An item</li>
+                                                              <li class="list-group-item">A second item</li>
+                                                              <li class="list-group-item">A third item</li>
+                                                            </ul>
+                                                          </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="list-4" role="tabpanel" aria-labelledby="list-settings-list">
+                                                          
+                                                          <div class="card" style="width: 18rem;">
+                                                            <div class="card-header">
+                                                              Task 4
+                                                            </div>
+                                                            <ul class="list-group list-group-flush">
+                                                              <li class="list-group-item">An item</li>
+                                                              <li class="list-group-item">A second item</li>
+                                                              <li class="list-group-item">A third item</li>
+                                                            </ul>
+                                                          </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="list-5" role="tabpanel" aria-labelledby="list-profile-list">
+                                                          
+                                                          <div class="card" style="width: 18rem;">
+                                                            <div class="card-header">
+                                                              Task 5
+                                                            </div>
+                                                            <ul class="list-group list-group-flush">
+                                                              <li class="list-group-item">An item</li>
+                                                              <li class="list-group-item">A second item</li>
+                                                              <li class="list-group-item">A third item</li>
+                                                            </ul>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div> -->
+            <!-- </div> -->
+        </div>
+
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <script src="app.js"></script>
+
+    </body>
+</html>
+<!-- Optional JavaScript; choose one of the two! --><!-- Option 1: Bootstrap Bundle with Popper --><!-- Option 2: Separate Popper and Bootstrap JS --><!--
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+                 -->
