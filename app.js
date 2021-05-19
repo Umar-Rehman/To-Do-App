@@ -1,165 +1,12 @@
-// dueDate.min = new Date().toISOString().split("T")[0];
+dueDate.min = new Date().toISOString().split("T")[0]; // sets a limit on the date picker so cant choose a date before today
 
 
-// function validateForm() {
-//     let name = document.forms["myForm"]["name"].value;
-//     let description = document.forms["myForm"]["description"].value;
-//     let assignedTo = document.forms["myForm"]["assignedto"].value;
-//     let dueDate = document.forms["myForm"]["dueDate"].value;
-//     let status = document.forms["myForm"]["status"].value;
-//     if ((name == "") || (name.length > 20)) {
-//         alert("Enter a valid name!");
-//         return false;
-//     } else if ((description == "") || (description.length > 20)) {
-//         alert("Enter valid description");
-//         return false;
-//     } else if ((assignedTo == "") || (assignedTo.length > 20)) {
-//         alert("Enter valid Assigned to");
-//         return false;
-//     } else if (dueDate == "") {
-//         alert("Select a valid date")
-//     } else if (status == "") {
-//         alert("Select a valid status")
-//     }
-//     return true
-// }
-
-// Task 2
-
-// document.querySelector("#addTask").addEventListener("click", function () {
-
-//     if (validateForm() == true) {
-//         let id = taskList.length + 1
-//         let assignedBy = document.querySelector("#name").value;
-//         let description = document.querySelector("#description").value;
-//         let assignedTo = document.querySelector("#assignedto").value;
-//         let dueDate = document.querySelector("#dueDate").value;
-//         let status = document.querySelector("#status").value;
-
-//         createTask(id, assignedBy, description, assignedTo, dueDate, status)
-//         display()
-//     }
-// })
-
-// function createTask(id, assignedBy, description, assignedTo, dueDate, status) {
-//     let newTask = {
-//         "ID": id,
-//         "Name": assignedBy,
-//         "Description": description,
-//         "AssignedTo": assignedTo,
-//         "DueDate": dueDate,
-//         "Status": status
-//     }
-
-//     taskList.push(newTask)
-//     localStorage.setItem("allTaskList", JSON.stringify(taskList))
-//     console.log(taskList)
-// }
-
-// function display() {
-//     let outputSection = document.querySelector("#taskOutput")
-//     outputSection.innerHTML = ""
-
-//     for (x in taskList) {
-//         let taskHTML = `<div class="card cardSpace" style="width: 18rem; border-color: #dc3545;">
-//         <div class="card-header">
-//             <h5>
-//                 <strong>Assigned To:
-//                 </strong>${
-//             taskList[x]["AssignedTo"]
-//         }</h5>
-//         </div>
-//         <ul class="list-group list-group-flush">
-//             <li class="list-group-item">
-//                 <strong>Assigned By:
-//                 </strong>${
-//             taskList[x]["Name"]
-//         }</li>
-//             <li class="list-group-item">
-//                 <strong>Due:
-//                 </strong>${
-//             taskList[x]["DueDate"]
-//         }</li>
-//             <li class="list-group-item">
-//                 <strong>To-Do:
-//                 </strong>${
-//             taskList[x]["Description"]
-//         }</li>
-//             <li class="list-group-item">
-//                 <strong>Status:
-//                 </strong>${
-//             taskList[x]["Status"]
-//         }</li>
-//         </ul>
-//     </div>`
-//         outputSection.innerHTML += taskHTML
-//     }
-// }
-
-// let taskList = []
-
-// Task 4 part 1
-// Creating the task objects
-
-// document.querySelector("#submit").addEventListener("click", function () {
-//     getItems()
-// });
-
-// function getItems() {
-// taskList = []
-//     id = taskList.length +1
-//     nameTask = document.querySelector("#nameForm").value;
-//     description = document.querySelector("#Description").value;
-//     assign = document.querySelector("#assignForm").value;
-//     date = document.querySelector("#dateForm").value;
-//     status = document.querySelector("#statusForm").value;
-
-//     let taskAllObject = taskObject(nameTask, description, assign, date, status);
-//     return taskAllObject;
-// }
-
-// function taskObject(nameTask, description, assign, date, status) {
-//     let taskAllObject = {
-//         Name: nameTask,
-//         Description: description,
-//         AssignedTo: assign,
-//         DueDate: date,
-//         Status: status
-//     }
-//     console.log(taskAllObject);
-// }
-
-
-// // Task 4 Part 2
-// // Task Manager Class
-// class TaskManager {
-//     constructor() {
-//         this.tasks = []
-
-//     }
-//     getTasks() {
-//         return this.tasks
-//     }
-//     addTask(task) {
-//         this.tasks.push(task);
-//     }
-//     deleteTask() {
-//         return this.tasks
-//     }
-//     updateTaskStatus() {
-//         return this.tasks
-//     }
-// }
-
-dueDate.min = new Date().toISOString().split("T")[0]; //sets a limit on the date picker so cant choose a date before today
-
-
-function validateForm() { //validates the inputs on the form
-    let name = document.forms["myForm"]["name"].value;
-    let description = document.forms["myForm"]["description"].value;
-    let assignedTo = document.forms["myForm"]["assignedto"].value;
-    let dueDate = document.forms["myForm"]["dueDate"].value;
-    let status = document.forms["myForm"]["status"].value;
+function validateForm() { // validates the inputs on the form
+    const name = document.forms["myForm"]["name"].value;
+    const description = document.forms["myForm"]["description"].value;
+    const assignedTo = document.forms["myForm"]["assignedto"].value;
+    const dueDate = document.forms["myForm"]["dueDate"].value;
+    const status = document.forms["myForm"]["status"].value;
     if ((name == "") || (name.length > 20)) {
         alert("Enter a valid name!");
         return false;
@@ -171,8 +18,10 @@ function validateForm() { //validates the inputs on the form
         return false;
     } else if (dueDate == "") {
         alert("Select a valid date")
+        return false;
     } else if (status == "") {
         alert("Select a valid status")
+        return false;
     }
     return true
 }
@@ -180,6 +29,7 @@ function validateForm() { //validates the inputs on the form
 class TaskManager {
     constructor() {
         this.taskList = [];
+        this.nextTaskID = 1;
     }
 
     getAllTask() {
@@ -187,31 +37,61 @@ class TaskManager {
     }
 
     addTask(task) {
+        // const taskID = this.nextTaskID;
+        // this.nextTaskID++;
+        // this.taskList[taskID] = task;
+        // this.taskList.push(task)
         this.taskList.push(task)
     }
 
-    deleteTask(task) {
+    deleteTask() {
+        let event = window.event.target;
+        console.log(event)
+
+        let taskID = event.parentNode.parentNode.parentNode.attributes.id.value
+
+        console.log(event.parentNode.parentNode.parentNode)
+
+        console.log(taskID)
+
+        let x = 0
+
+        while (x < 2) {
+            let deletedElement = document.getElementById(taskID)
+            deletedElement.remove()
+            x++
+        }
+
+        for (x in this.taskList) {
+            console.log(this.taskList[x].ID)
+            if (this.taskList[x].ID == taskID) {
+                this.taskList.splice(x, 1)
+                console.log(this.taskList)
+            } else {
+                console.log("Not ID")
+            }
+        }
+
+        console.log("clicked")
 
     }
 
-
     updateTask(taskId, status) {}
-        
-};
+
+}
 
 let tm = new TaskManager();
 
 document.querySelector("#addTask").addEventListener("click", function () {
 
-    if (validateForm() == true) {
-        let id = tm.taskList.length + 1
+    if (validateForm() == true) { // let id = tm.taskList.length + 1
         let assignedBy = document.querySelector("#name").value;
         let description = document.querySelector("#description").value;
         let assignedTo = document.querySelector("#assignedto").value;
         let dueDate = document.querySelector("#dueDate").value;
         let status = document.querySelector("#status").value;
 
-        let newTask = createTask(id, assignedBy, description, assignedTo, dueDate, status)
+        let newTask = createTask(assignedBy, description, assignedTo, dueDate, status)
 
         tm.addTask(newTask)
         console.log("Your tasks: ", tm.getAllTask())
@@ -220,8 +100,16 @@ document.querySelector("#addTask").addEventListener("click", function () {
     }
 })
 
+function createTask(assignedBy, description, assignedTo, dueDate, status) { // create ID
+    let id = 0
 
-function createTask(id, assignedBy, description, assignedTo, dueDate, status) {
+    if (tm.taskList.length == 0) {
+        id = 1
+    } else {
+        let lastItemID = tm.taskList[tm.taskList.length - 1].ID
+        id = lastItemID + 1
+    }
+
     let newTask = {
         "ID": id,
         "Name": assignedBy,
@@ -238,14 +126,14 @@ function createTask(id, assignedBy, description, assignedTo, dueDate, status) {
     return newTask
 }
 
-console.log("Testing Testing One Two One Two")
-
 function display() {
     let outputSection = document.querySelector("#taskOutput")
     outputSection.innerHTML = ""
 
     for (x in tm.taskList) {
-        let taskHTML = `<div class="card cardSpace" style="width: 18rem; border-color: #dc3545;">
+        let taskHTML = `<div id="${
+            tm.taskList[x]["ID"]
+        }" class="card cardSpace" style="width: 18rem; border-color: #dc3545;">
         <div class="card-header">
             <h5>
                 <strong>Assigned To:
@@ -274,8 +162,38 @@ function display() {
                 </strong>${
             tm.taskList[x]["Status"]
         }</li>
+            <li class="list-group-item">
+            <button type="button" class="btn btn-labeled btn-danger" id="delete" onclick="tm.deleteTask()">
+            <span class="btn-label"><i class="fa fa-trash"></i></span> Delete</button>
+            <button type="button" class="btn btn-labeled btn-danger" id="delete">
+            <span class="btn-label"><i class="fa fa-edit"></i></span> Update</button>
+            </li>
         </ul>
     </div>`
         outputSection.innerHTML += taskHTML
+
+
+        let outputSummarySection = document.querySelector("#taskSummaryOutput")
+        outputSummarySection.innerHTML = ""
+
+        for (x in tm.taskList) {
+            let summaryHTML = `<a href="#" id="${
+                tm.taskList[x]["ID"]
+            }" class="list-group-item list-group-item-action" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><strong>Assigned to: </strong>${
+                tm.taskList[x]["AssignedTo"]
+            }</h5>
+            <small><strong>Due: </strong>${
+                tm.taskList[x]["DueDate"]
+            }</small>
+        </div>
+        <small><strong>Status: </strong>${
+                tm.taskList[x]["Status"]
+            }</small>
+    </a>`
+            outputSummarySection.innerHTML += summaryHTML
+        }
     }
+
 }
