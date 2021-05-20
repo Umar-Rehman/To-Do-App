@@ -34,10 +34,6 @@ select option[value="80dfff"] {
 
 /* sets both h3's to the same height */
 
-.h3Spacing {
-    height: 40px;
-}
-
 ul {
     list-style-type: none;
 }
@@ -60,6 +56,11 @@ ul {
 }
 
 .form-group{
+    padding-bottom: 1rem;
+}
+
+.infoText {
+    padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
