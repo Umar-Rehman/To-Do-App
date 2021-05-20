@@ -40,25 +40,37 @@ class TaskManager {
         // const taskID = this.nextTaskID;
         // this.nextTaskID++;
         // this.taskList[taskID] = task;
-        // this.taskList.push(task)
-        this.taskList.push(task)
+        // this.taskList.push(task);
+        this.taskList.push(task);
+        this.updateLocalStorage();
+    }
+
+    updateLocalStorage(){
+        localStorage.setItem('tasks', JSON.stringify(this.taskList));
+    }
+
+    loadFromLocalStorage(){
+        this.taskList = JSON.parse(localStorage.getItem('tasks'));
+        for (let x in this.taskList){
+            display()
+        }
     }
 
     deleteTask() {
         let event = window.event.target;
-        console.log(event)
+        console.log(event);
 
-        let taskID = event.parentNode.parentNode.parentNode.attributes.id.value
+        let taskID = event.parentNode.parentNode.parentNode.attributes.id.value;
 
-        console.log(event.parentNode.parentNode.parentNode)
+        console.log(event.parentNode.parentNode.parentNode);
 
-        console.log(taskID)
+        console.log(taskID);
 
-        let x = 0
+        let x = 0;
 
         while (x < 2) {
-            let deletedElement = document.getElementById(taskID)
-            deletedElement.remove()
+            let deletedElement = document.getElementById(taskID);
+            deletedElement.remove();
             x++
         }
 
@@ -72,7 +84,7 @@ class TaskManager {
             }
         }
 
-        console.log("clicked")
+        this.updateLocalStorage();
 
     }
 
@@ -81,7 +93,7 @@ class TaskManager {
 }
 
 let tm = new TaskManager();
-
+tm.loadFromLocalStorage()
 document.querySelector("#addTask").addEventListener("click", function () {
 
     if (validateForm() == true) { // let id = tm.taskList.length + 1
@@ -163,10 +175,10 @@ function display() {
             tm.taskList[x]["Status"]
         }</li>
             <li class="list-group-item">
-            <button type="button" class="btn btn-labeled btn-danger" id="delete" onclick="tm.deleteTask()">
-            <span class="btn-label"><i class="fa fa-trash"></i></span> Delete</button>
-            <button type="button" class="btn btn-labeled btn-danger" id="delete">
-            <span class="btn-label"><i class="fa fa-edit"></i></span> Update</button>
+                <button type="button" class="btn btn-labeled btn-danger" id="delete" onclick="tm.deleteTask()">
+                <span class="btn-label"><i class="fa fa-trash"></i></span> Delete</button>
+                <button type="button" class="btn btn-labeled btn-info" id="update">
+                <span class="btn-label"><i class="fa fa-edit"></i></span> Update</button>
             </li>
         </ul>
     </div>`
