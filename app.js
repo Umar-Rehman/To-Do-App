@@ -7,6 +7,7 @@ function validateForm() { // validates the inputs on the form
     const assignedTo = document.forms["myForm"]["assignedto"].value;
     const dueDate = document.forms["myForm"]["dueDate"].value;
     const status = document.forms["myForm"]["status"].value;
+    const urgency = document.forms["myForm"]["urgency"].value
     if ((name == "") || (name.length > 20)) {
         alert("Enter a valid name!");
         return false;
@@ -22,6 +23,8 @@ function validateForm() { // validates the inputs on the form
     } else if (status == "") {
         alert("Select a valid status")
         return false;
+    } else if (urgency == "") {
+        alert("Select a valid urgency")
     }
     return true
 }
@@ -105,8 +108,9 @@ document.querySelector("#addTask").addEventListener("click", function () {
         let assignedTo = document.querySelector("#assignedto").value;
         let dueDate = document.querySelector("#dueDate").value;
         let status = document.querySelector("#status").value;
+        let urgency = document.querySelector("#urgency").value
 
-        let newTask = createTask(assignedBy, description, assignedTo, dueDate, status)
+        let newTask = createTask(assignedBy, description, assignedTo, dueDate, status, urgency)
 
         tm.addTask(newTask)
         console.log("Your tasks: ", tm.getAllTask())
@@ -115,7 +119,7 @@ document.querySelector("#addTask").addEventListener("click", function () {
     }
 })
 
-function createTask(assignedBy, description, assignedTo, dueDate, status) { // create ID
+function createTask(assignedBy, description, assignedTo, dueDate, status, urgency) { // create ID
     let id = 0
 
     if (tm.taskList.length == 0) {
@@ -131,7 +135,8 @@ function createTask(assignedBy, description, assignedTo, dueDate, status) { // c
         "Description": description,
         "AssignedTo": assignedTo,
         "DueDate": dueDate,
-        "Status": status
+        "Status": status,
+        "Urgency": urgency
     }
 
     // taskList.push(newTask)
@@ -148,7 +153,7 @@ function display() {
     for (x in tm.taskList) {
         let taskHTML = `<div id="${
             tm.taskList[x]["ID"]
-        }" class="card cardSpace" style="width: 18rem; border-color: #dc3545;">
+        }" class="card cardSpace" style="width: 18rem; border-color: ${tm.taskList[x]["Urgency"]};">
         <div class="card-header">
             <h5>
                 <strong>Assigned To:

@@ -13,7 +13,9 @@ body {
     height: 40px;
     
 }
-
+ul {
+    list-style-type: none;
+}
 .outerTask {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -38,4 +40,8 @@ body {
     margin-bottom: 1em;
     margin-left: 1em;
     border: .6rem solid;
+}
+
+.infoTitle {
+    font-size: 1.5rem;
 }
