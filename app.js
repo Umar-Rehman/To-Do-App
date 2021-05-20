@@ -40,24 +40,20 @@ class TaskManager {
     }
 
     addTask(task) {
-        // const taskID = this.nextTaskID;
-        // this.nextTaskID++;
-        // this.taskList[taskID] = task;
-        // this.taskList.push(task);
         this.taskList.push(task);
         this.updateLocalStorage();
     }
 
-    updateLocalStorage(){
+    updateLocalStorage() {
         localStorage.setItem('tasks', JSON.stringify(this.taskList));
     }
 
-    loadFromLocalStorage(){
+    loadFromLocalStorage() {
         const taskList = JSON.parse(localStorage.getItem('tasks'))
-        if (taskList){
+        if (taskList) {
             this.taskList = taskList
         }
-        for (let x in this.taskList){
+        for (let x in this.taskList) {
             display()
         }
     }
@@ -94,7 +90,9 @@ class TaskManager {
 
     }
 
-    updateTask(taskId, status) {}
+    updateTask(taskId, status) {
+
+    }
 
 }
 
@@ -138,11 +136,6 @@ function createTask(assignedBy, description, assignedTo, dueDate, status, urgenc
         "Status": status,
         "Urgency": urgency
     }
-
-    // taskList.push(newTask)
-    // localStorage.setItem("allTaskList", JSON.stringify(taskList))
-    // console.log(taskList)
-    // this.display()
     return newTask
 }
 
@@ -153,7 +146,9 @@ function display() {
     for (x in tm.taskList) {
         let taskHTML = `<div id="${
             tm.taskList[x]["ID"]
-        }" class="card cardSpace" style="width: 18rem; border-color: ${tm.taskList[x]["Urgency"]};">
+        }" class="card cardSpace" style="width: 18rem; border-color: #${
+            tm.taskList[x]["Urgency"]
+        };">
         <div class="card-header">
             <h5>
                 <strong>Assigned To:
@@ -185,11 +180,11 @@ function display() {
             <li class="list-group-item">
             <button type="button" class="btn btn-labeled btn-danger" id="delete" onclick="tm.deleteTask()">
             <span class="btn-label"><i class="fa fa-trash"></i></span> Delete</button>
-            <button type="button" class="btn btn-labeled btn-danger" id="delete">
+            <button type="button" class="btn btn-labeled btn-info" id="delete">
             <span class="btn-label"><i class="fa fa-edit"></i></span> Update</button>
-            </li>
+        </li>
         </ul>
-    </div>`
+        </div>`
         outputSection.innerHTML += taskHTML
 
 
@@ -197,23 +192,28 @@ function display() {
         outputSummarySection.innerHTML = ""
 
         for (x in tm.taskList) {
-            let summaryHTML = `<a href="#" id="${
-                tm.taskList[x]["ID"]
-            }" class="list-group-item list-group-item-action" aria-current="true">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1"><strong>Assigned to: </strong>${
-                tm.taskList[x]["AssignedTo"]
-            }</h5>
-            <small><strong>Due: </strong>${
-                tm.taskList[x]["DueDate"]
-            }</small>
-        </div>
-        <small><strong>Status: </strong>${
-                tm.taskList[x]["Status"]
-            }</small>
-    </a>`
+            let summaryHTML = `<a href="#" id="${tm.taskList[x]["ID"]}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">
+                    <strong>Assigned to: </strong>${tm.taskList[x]["AssignedTo"]}
+                </h5>
+                <small>
+                    <strong>Due: </strong>${tm.taskList[x]["DueDate"]}
+                </small>
+            </div>
+            <div class="d-flex w-100 justify-content-between">
+                <small><strong>Status: </strong>${tm.taskList[x]["Status"]}
+                </small>
+                <small>
+                    <button type="button" class="${tm.taskList[x]["Urgency"]}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-square-fill" viewBox="0 0 16 16">
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                    </button>
+                </small>
+            </div>
+            </a>`
             outputSummarySection.innerHTML += summaryHTML
         }
     }
-
 }
