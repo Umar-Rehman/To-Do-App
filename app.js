@@ -50,7 +50,10 @@ class TaskManager {
     }
 
     loadFromLocalStorage(){
-        this.taskList = JSON.parse(localStorage.getItem('tasks'));
+        const taskList = JSON.parse(localStorage.getItem('tasks'))
+        if (taskList){
+            this.taskList = taskList
+        }
         for (let x in this.taskList){
             display()
         }
@@ -175,10 +178,10 @@ function display() {
             tm.taskList[x]["Status"]
         }</li>
             <li class="list-group-item">
-                <button type="button" class="btn btn-labeled btn-danger" id="delete" onclick="tm.deleteTask()">
-                <span class="btn-label"><i class="fa fa-trash"></i></span> Delete</button>
-                <button type="button" class="btn btn-labeled btn-info" id="update">
-                <span class="btn-label"><i class="fa fa-edit"></i></span> Update</button>
+            <button type="button" class="btn btn-labeled btn-danger" id="delete" onclick="tm.deleteTask()">
+            <span class="btn-label"><i class="fa fa-trash"></i></span> Delete</button>
+            <button type="button" class="btn btn-labeled btn-danger" id="delete">
+            <span class="btn-label"><i class="fa fa-edit"></i></span> Update</button>
             </li>
         </ul>
     </div>`
