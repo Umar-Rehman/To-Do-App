@@ -26,6 +26,10 @@ select option[value="80dfff"] {
     margin-top: 1rem;
 }
 
+#updateTask{
+    margin-top: 1rem;
+}
+
 .caption {
     text-align: center;
     /* margin-top: 3%;

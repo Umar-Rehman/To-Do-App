@@ -46,6 +46,7 @@ class TaskManager {
 
     updateLocalStorage() {
         localStorage.setItem('tasks', JSON.stringify(this.taskList));
+        location.reload()
     }
 
     loadFromLocalStorage() {
@@ -90,10 +91,48 @@ class TaskManager {
 
     }
 
-    updateTask(taskId, status) {
+    updateTask() {
+        let updatedTask = {}
+        let event = window.event.target
+        let updatedTaskID = event.parentNode.parentNode.parentNode.attributes.id.value;
+        
+        
+        for(x=0; x<this.taskList.length; x++){
+            if(this.taskList[x].ID == updatedTaskID){
+                updatedTask = this.taskList[x]
+            }
+        }
+        
+        document.querySelector("#name").value = updatedTask.Name
+        document.querySelector("#description").value = updatedTask.Description
+        document.querySelector("#assignedto").value = updatedTask.AssignedTo
+        document.querySelector("#dueDate").value = updatedTask.DueDate
+        document.querySelector("#status").value = updatedTask.Status
+        document.querySelector("#urgency").value = updatedTask.Urgency
 
+        document.querySelector('#addTask').outerHTML = `<button type="button" id="updateTask" class="btn btn-info">Save</button>`
+
+        document.querySelector('#updateTask').addEventListener('click', function(){
+            const name = document.querySelector('#name').value;
+            const description = document.querySelector('#description').value;
+            const assignedTo = document.querySelector('#assignedto').value;
+            const dueDate = document.querySelector('#dueDate').value;
+            const status = document.querySelector('#status').value;
+            const urgency = document.querySelector('#urgency').value;
+
+            if (validateForm() == true){
+                updatedTask.Name = name
+                updatedTask.AssignedTo = assignedTo
+                updatedTask.Description = description
+                updatedTask.DueDate = dueDate
+                updatedTask.Status = status
+                updatedTask.Urgency = urgency
+
+                tm.updateLocalStorage();
+
+            }
+        })
     }
-
 }
 
 let tm = new TaskManager();
@@ -180,7 +219,7 @@ function display() {
             <li class="list-group-item">
             <button type="button" class="btn btn-labeled btn-danger" id="delete" onclick="tm.deleteTask()">
             <span class="btn-label"><i class="fa fa-trash"></i></span> Delete</button>
-            <button type="button" class="btn btn-labeled btn-info" id="delete">
+            <button type="button" class="btn btn-labeled btn-info" id="delete" onclick="tm.updateTask()">
             <span class="btn-label"><i class="fa fa-edit"></i></span> Update</button>
         </li>
         </ul>
