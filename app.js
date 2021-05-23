@@ -32,7 +32,7 @@ function validateForm() { // validates the inputs on the form
 class TaskManager {
     constructor() {
         this.taskList = [];
-        this.nextTaskID = 1;
+        this.nextTaskID = 1; //needed???
     }
 
     getAllTask() {
@@ -137,6 +137,7 @@ class TaskManager {
 
 let tm = new TaskManager();
 tm.loadFromLocalStorage()
+
 document.querySelector("#addTask").addEventListener("click", function () {
 
     if (validateForm() == true) { // let id = tm.taskList.length + 1
@@ -173,7 +174,7 @@ function createTask(assignedBy, description, assignedTo, dueDate, status, urgenc
         "AssignedTo": assignedTo,
         "DueDate": dueDate,
         "Status": status,
-        "Urgency": urgency
+        "Urgency": urgency,
     }
     return newTask
 }
@@ -219,7 +220,7 @@ function display() {
             <li class="list-group-item">
             <button type="button" class="btn btn-labeled btn-danger" id="delete" onclick="tm.deleteTask()">
             <span class="btn-label"><i class="fa fa-trash"></i></span> Delete</button>
-            <button type="button" class="btn btn-labeled btn-info" id="delete" onclick="tm.updateTask()">
+            <button type="button" class="btn btn-labeled btn-info" id="update" onclick="tm.updateTask()">
             <span class="btn-label"><i class="fa fa-edit"></i></span> Update</button>
         </li>
         </ul>
