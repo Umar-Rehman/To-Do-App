@@ -186,7 +186,7 @@ function display() {
     for (x in tm.taskList) {
         let taskHTML = `<div id="${
             tm.taskList[x]["ID"]
-        }" class="card cardSpace" style="width: 18rem; border-color: #${
+        }" class="card cardSpace" style="width: 18.45rem; border-color: #${
             tm.taskList[x]["Urgency"]
         };">
         <div class="card-header">
